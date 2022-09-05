@@ -21,9 +21,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/post/{slug}', function($slug) {
-    $post = Post::where('slug', $slug)->firstOrFail();
+Route::get('/post/{comodin}', function($comodin) {
+    $p = Post::where('slug', $comodin)->firstOrFail();
     return view('post', [
-        "post" => $post,
+        "post" => $p,
     ]);
 });
