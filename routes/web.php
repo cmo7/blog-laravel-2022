@@ -1,22 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/', function (Request $request) {
+    $search_string = $request->query('search');
+    $posts = Post::query()
+        ->where('title', 'like', '%' . $search_string . '%')
+        ->orWhere('content', 'like', '%' . $search_string . '%')
+        ->get()
+        ->take(9)
+        ->sortBy('title');
 
-Route::get('/', function () {
-    $posts = Post::all();
-    return view('posts', [
+    return view('front-page', [
         "posts" => $posts,
     ]);
 });
@@ -26,4 +24,9 @@ Route::get('/post/{comodin}', function($comodin) {
     return view('post', [
         "post" => $p,
     ]);
+});
+
+Route::get('/category/{comodin}', function($comodin) {
+    $category = Category::where('slug', $comodin)->firstOrFail();
+    return $category;
 });
