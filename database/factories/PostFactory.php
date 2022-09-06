@@ -17,7 +17,11 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "title" => $this->faker->sentence(5, true),
+            "slug" => $this->faker->slug(10, true),
+            "content" => $this->faker->paragraph(20, true),
+            "excerpt" => $this->faker->paragraph(2, false),
+            "category_id" => \App\Models\Category::factory()->create()
         ];
     }
 }
