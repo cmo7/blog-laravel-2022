@@ -28,5 +28,7 @@ Route::get('/post/{comodin}', function($comodin) {
 
 Route::get('/category/{comodin}', function($comodin) {
     $category = Category::where('slug', $comodin)->firstOrFail();
-    return $category;
+    return view('category', [
+        "category" => $category,
+    ]);
 });
