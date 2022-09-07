@@ -32,3 +32,8 @@ Route::get('/category/{comodin}', function($comodin) {
         "category" => $category,
     ]);
 });
+
+
+Route::get('/new-post', function() {
+    return view('new-post');
+});
