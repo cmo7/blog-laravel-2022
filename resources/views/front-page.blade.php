@@ -7,7 +7,7 @@
     </header>
     <section class="tiles">
         @foreach ($posts as $post)
-            <article class="style1">
+            <article class="style{{$post->style}}">
                 <span class="image">
                     <img src="images/pic01.jpg" alt="" />
                 </span>

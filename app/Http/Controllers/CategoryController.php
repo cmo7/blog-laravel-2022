@@ -26,6 +26,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->name = $request->input('name');
         $category->slug = Str::slug($category->name);
+        $category->color = $request->input('color');
         $category->save();
         return redirect('/');
     }

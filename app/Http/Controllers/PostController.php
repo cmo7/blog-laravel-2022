@@ -31,6 +31,7 @@ class PostController extends Controller
         $post->excerpt = $request->input('excerpt');
         $post->content = $request->input('content');
         $post->category_id = $request->input('category_id');
+        $post->style = $request->input('style');
         $post->save();
         return redirect('/');
     }

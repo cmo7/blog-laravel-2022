@@ -18,7 +18,8 @@ class CategoryFactory extends Factory
     {
         return [
             "name" => $this->faker->word(),
-            "slug" => $this->faker->slug(5)
+            "slug" => $this->faker->slug(5),
+            "color" => $this->faker->hexColor(),
         ];
     }
 }

@@ -21,7 +21,8 @@ class PostFactory extends Factory
             "slug" => $this->faker->slug(10, true),
             "content" => $this->faker->paragraph(20, true),
             "excerpt" => $this->faker->paragraph(2, false),
-            "category_id" => \App\Models\Category::factory()->create()
+            "category_id" => \App\Models\Category::factory()->create(),
+            "style" => random_int(1, 6),
         ];
     }
 }
