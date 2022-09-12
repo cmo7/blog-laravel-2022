@@ -1,6 +1,6 @@
 <x-layout>
     <x-validation-errors />
-    <form action="/new-post" method="post" enctype="multipart/form-data">
+    <form action="{{route('create_post')}}" method="post" enctype="multipart/form-data">
         @csrf
         <label for="title">Título</label>
         <input type="text" name="title" id="title" value="{{ old('title') }}" required>

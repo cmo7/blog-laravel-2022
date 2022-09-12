@@ -47,6 +47,7 @@ class PostController extends Controller
         $post->category_id = $request->input('category_id');
         $post->style = $request->input('style');
         $post->cover = $coverFileName;
+        $post->user = auth()->user();
         $post->save();
 
         session()->flash('success', 'Se ha creado un nuevo post');
@@ -57,5 +58,15 @@ class PostController extends Controller
     public function get_all_posts()
     {
         return redirect('/');
+    }
+
+    public function delete(Request $request) {
+        $id = $request->input('post_id');
+        $post = Post::findOrFail($id);
+        if ($post->user == auth()->user()) {
+            $post->delete();
+            return redirect('/')->with('success', 'Post borrado con éxito');
+        }
+        return redirect('/')->with('success', 'No tienes permiso');
     }
 }

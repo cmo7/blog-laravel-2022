@@ -16,7 +16,8 @@ class AuthController extends Controller
 
         $validatedData["password"] = bcrypt($validatedData["password"]);
 
-        User::create($validatedData);
+        $user = User::create($validatedData);
+        auth()->login($user);
 
         session()->flash('success', 'Se ha creado tu cuenta');
 
@@ -24,11 +25,23 @@ class AuthController extends Controller
     }
 
     public function login(Request $request) {
+        $validatedData = $request->validate([
+            "email" => "required|email",
+            "password" => "required"
+        ]);
 
+        if (!auth()->attempt($validatedData)) {
+            return back()
+                ->withInput()
+                ->withErrors(['email' => 'Email o contraseña incorrectos']);
+        }
+
+        return redirect('/')->with('success', 'Has accedido con éxito');
     }
 
-    public function logout(Request $request) {
-
+    public function logout() {
+        auth()->logout();
+        return redirect('/')->with('success', 'Has salido de tu cuenta');
     }
 
     public function signup_form() {

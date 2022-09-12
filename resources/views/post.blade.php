@@ -8,5 +8,20 @@
         >
         {{ $post->category->name }}
     </a>
+    <p>por {{$post->user->name}}</p>
     <p>{{ $post->content }}</p>
+    @if (auth()->user() == $post->user())
+        <form action="/delete" method="post">
+            @csrf
+            <input type="hidden" name="post_id" value="{{$post->id}}">
+            <input class="button main" type="submit" value="Borrar">
+        </form>
+
+        <form action="/edit" method="post">
+            @csrf
+            <input type="hidden" name="post_id" value="{{$post->id}}">
+            <input class="button main" type="submit" value="Editar">
+        </form>
+    @endif
+
 </x-layout>
