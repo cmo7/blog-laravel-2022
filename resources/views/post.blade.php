@@ -1,6 +1,6 @@
 <x-layout>
     <h1>{{ $post->title }}</h1>
-    <span class="image main"><img src="/images/pic13.jpg" alt="" /></span>
+    <span class="image main"><img src="/img/{{$post->cover}}" alt="" /></span>
     <a
         href="/category/{{ $post->category->slug }}"
         class="button primary"

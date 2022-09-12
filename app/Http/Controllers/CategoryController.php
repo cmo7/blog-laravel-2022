@@ -23,6 +23,11 @@ class CategoryController extends Controller
 
     public function create_category(Request $request)
     {
+        $request->validate([
+            "name" => "required|unique:categories|max:255",
+            "color" => "required"
+        ]);
+
         $category = new Category();
         $category->name = $request->input('name');
         $category->slug = Str::slug($category->name);

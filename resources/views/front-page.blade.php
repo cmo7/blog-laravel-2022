@@ -9,7 +9,7 @@
         @foreach ($posts as $post)
             <article class="style{{$post->style}}">
                 <span class="image">
-                    <img src="images/pic01.jpg" alt="" />
+                    <img src="/img/{{$post->cover}}" alt="" />
                 </span>
                 <a href="/post/{{ $post->slug }}">
                     <h2>{{ $post->title }}</h2>

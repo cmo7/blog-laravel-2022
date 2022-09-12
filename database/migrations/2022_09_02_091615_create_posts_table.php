@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('style');
             $table->text('content');
             $table->text('excerpt');
+            $table->string('cover');
             $table->timestamps();
         });
     }

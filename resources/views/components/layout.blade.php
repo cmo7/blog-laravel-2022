@@ -11,6 +11,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/flash-messages.css" />
     <noscript>
         <link rel="stylesheet" href="/assets/css/noscript.css" />
     </noscript>
@@ -23,6 +24,12 @@
         <x-header />
 
         <x-menu />
+
+        @if (session()->has('success'))
+            <div class="flash-message">
+                <p>{{session('success')}}</p>
+            </div>
+        @endif
 
         <!-- Main -->
         <div id="main">
